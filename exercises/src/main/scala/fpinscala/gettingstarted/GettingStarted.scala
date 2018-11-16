@@ -15,6 +15,7 @@ object MyModule {
 
   def main(args: Array[String]): Unit =
     println(formatAbs(-42))
+    //println(factorial(5))
 
   // A definition of factorial, using a local, tail recursive function
   def factorial(n: Int): Int = {
@@ -36,7 +37,14 @@ object MyModule {
 
   // Exercise 1: Write a function to compute the nth fibonacci number
 
-  def fib(n: Int): Int = ???
+  def fib(n: Int): Int = {
+
+    @annotation.tailrec
+    def loop(n: Int, previous: Int, current: Int): Int =
+      if (n == 0) previous
+      else loop(n-1, current, current + previous)
+    loop(n, 0, 1)
+  }
 
   // This definition and `formatAbs` are very similar..
   private def formatFactorial(n: Int) = {
